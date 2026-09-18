@@ -89,9 +89,10 @@ shaft, that implies about 46 mm total reach; the original 47 mm calculation used
 a 21 mm extension. Measure the actual motor shaft and required bearing location
 before choosing or trimming the dowel.
 
-| Arrangement | Pulley deflection at 100 N | Peak bending stress in 5 mm shaft |
+| Arrangement | Pulley deflection at 100 N | Peak modeled bending stress |
 |---|---:|---:|
 | Continuous 5 mm x 47 mm shaft with double shear | **~12.0 micrometers** | **~47 MPa** |
+| Solid 8 mm x 47 mm exposed shaft with double shear | **~2.75 micrometers** | **~16 MPa** |
 | 8 x 5 mm sleeve starting at 16 mm | **~7.7 micrometers** | **~54 MPa** |
 | 8 x 5 mm sleeve starting at 18 mm | ~8.6 micrometers | ~53 MPa |
 | 8 x 5 mm sleeve starting at 20 mm | ~9.3 micrometers | ~52 MPa |
@@ -108,6 +109,29 @@ diameter. A solid 8 mm shaft has:
 times the second moment of area of a solid 5 mm shaft. Accounting for the 304
 stainless annulus and the 5 mm steel core, the modeled flexural rigidity of the
 sleeved section is approximately **6.36 times** that of the bare 5 mm shaft.
+
+### Solid 8 mm Shaft Reference
+
+The solid 8 mm row uses the same 100 N load, pulley position, bearing positions,
+steel modulus, and 47 mm external reach as the 5 mm baseline. It models a solid
+8 mm shaft from the motor face to the outer support bearing while retaining the
+original model's 5 mm shaft through the approximately 40 mm internal-bearing
+span. This produces:
+
+- Pulley deflection: approximately **2.75 micrometers**, about **77% less** than
+  the continuous 5 mm x 47 mm baseline
+- Peak bending stress: approximately **16 MPa**, about **66% less** than the
+  5 mm baseline
+- External-section second moment of area: **6.55 times** that of the 5 mm shaft
+- External-section elastic section modulus: `(8 / 5)^3 = 4.096` times that of
+  the 5 mm shaft
+
+For completeness, an idealized 8 mm shaft through the entire model, including
+the span between the stepper's internal bearings, gives approximately **1.83
+micrometers** of pulley deflection and **11.5 MPa** peak bending stress. That is
+not a drop-in comparison for the existing motor because its internal shaft and
+bearings are designed around a 5 mm shaft; it is included only as a theoretical
+upper-bound reference.
 
 The model predicts slightly higher peak stress in the unsleeved 5 mm region for
 the sleeved versions. The stiffer outer section changes the reactions in the

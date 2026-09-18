@@ -28,30 +28,7 @@ The stainless sleeve bridges the original motor shaft and the dowel extension.
 The 5 mm dowel continues the shaft inside the sleeve, while the sleeve presents
 an 8 mm outside diameter for the outer bearing.
 
-```text
-Motor face                                                    outer support
-   |                                                              bearing
-   v                                                                v
-
-   original 5 mm motor D-shaft, about 26 mm
-   =========================================
-                         |<-- 10-12 mm -->|
-                         |  overlap on    |
-                         | original shaft |
-                         v                v
-
-                         +-----------------------------------------+
-                         | 8 mm OD x 5 mm ID stainless sleeve     |
-                         +-----------------------------------------+
-                                          ==========================
-                                          5 mm precision dowel pin
-
-   ^ pulley area                         ^ bearing should sit where
-     remains on the                      the dowel is inside the
-     original shaft                      sleeve, not beyond it
-
-   Approximate target reach from motor face: 47 mm
-```
+![Cutaway concept diagram of the ZeroG stepper double-shear shaft extension](assets/stepper-shaft-extension-concept.png)
 
 ## Assembly Notes
 

@@ -65,22 +65,77 @@ section.
 
 ## Stiffness Comparison
 
-The main mechanical reason this looks attractive is bending stiffness. A bare
-5 mm shaft is relatively flexible. The proposed sleeved section behaves more
-like an 8 mm composite shaft over the part where the 5 mm core is present.
+> **Unvalidated model:** these calculations are a rough comparative beam model,
+> not a certified design or test result. The 100 N load is an example load, not
+> a claim about actual ZeroG belt load. Deflection and stress scale approximately
+> linearly, so a 50 N load would produce about half the tabulated values.
 
-Using a simple beam comparison and assuming similar steel moduli:
+The original comparison used these assumptions:
 
-- A solid 8 mm shaft has about `(8 / 5)^4 = 6.55` times the second moment of area
-  of a solid 5 mm shaft.
-- An 8 mm OD x 5 mm ID stainless sleeve around a 5 mm steel core is roughly in
-  the same range for bending stiffness in the sleeved region.
-- In the earlier rough model, a sleeved arrangement with about 10 mm overlap had
-  lower pulley deflection than a continuous bare 5 mm x 47 mm shaft under the
-  same radial load.
+- Existing motor shaft: 5 mm diameter x 26 mm long
+- Comparison shaft: continuous 5 mm diameter x 47 mm long
+- Extension required for the model: 21 mm
+- Sleeve: 8 mm OD x 5 mm ID, modeled as 304 stainless steel
+- Sleeve start: 16, 18, or 20 mm from the motor face
+- Primary proposed geometry: sleeve starts at 16 mm, giving 10 mm overlap
+- Dowel starts at the end of the original shaft
+- Outer support bearing centered near 47 mm from the motor face
+- Pulley center about 12 mm from the motor face
+- Approximate spacing between the stepper's internal bearings: 40 mm
+- Example radial load at the pulley: 100 N
 
-These are unvalidated calculations. They are useful for comparison, but they do
-not prove fatigue life, bond strength, runout, bearing fit, or printer reliability.
+The current concept drawing labels a 20 mm dowel. With a measured 26 mm motor
+shaft, that implies about 46 mm total reach; the original 47 mm calculation used
+a 21 mm extension. Measure the actual motor shaft and required bearing location
+before choosing or trimming the dowel.
+
+| Arrangement | Pulley deflection at 100 N | Peak bending stress in 5 mm shaft |
+|---|---:|---:|
+| Continuous 5 mm x 47 mm shaft with double shear | **~12.0 micrometers** | **~47 MPa** |
+| 8 x 5 mm sleeve starting at 16 mm | **~7.7 micrometers** | **~54 MPa** |
+| 8 x 5 mm sleeve starting at 18 mm | ~8.6 micrometers | ~53 MPa |
+| 8 x 5 mm sleeve starting at 20 mm | ~9.3 micrometers | ~52 MPa |
+
+In this model, the proposed 10 mm-overlap arrangement produces about **36% less
+pulley deflection** than a continuous 5 mm x 47 mm shaft. The sleeved region is
+substantially stiffer because bending stiffness is strongly dependent on
+diameter. A solid 8 mm shaft has:
+
+```text
+(8 / 5)^4 = 6.55
+```
+
+times the second moment of area of a solid 5 mm shaft. Accounting for the 304
+stainless annulus and the 5 mm steel core, the modeled flexural rigidity of the
+sleeved section is approximately **6.36 times** that of the bare 5 mm shaft.
+
+The model predicts slightly higher peak stress in the unsleeved 5 mm region for
+the sleeved versions. The stiffer outer section changes the reactions in the
+three-bearing system, so the outer support carries more load and the bending
+moment near the pulley rises slightly. The predicted values remain modest for a
+steel motor shaft, but material grade, stress concentrations, fatigue, and the
+D-flat were not modeled in detail.
+
+### Retaining-Compound Joint Estimate
+
+With 10 mm of overlap on a 5 mm shaft, the nominal cylindrical bonding area is:
+
+```text
+pi x 5 mm x 10 mm = approximately 157 mm^2
+```
+
+The original beam model estimated approximately **0.4 N m** of bending moment
+through the sleeve near the splice under the example 100 N pulley load. A crude,
+conservative conversion placed the average adhesive stress below **1 MPa**.
+This suggests useful nominal static margin for Loctite 638 or 648, but it is not
+a safety-factor calculation. The D-flat reduces actual bond area, and cyclic
+bending, peel stress, fit clearance, surface preparation, stainless passivation,
+temperature, cure conditions, and adhesive age can dominate real joint life.
+
+These calculations do not establish fatigue life, adhesive durability, runout,
+bearing fit, concentricity, or printer reliability. The central experiment is
+whether the three-part assembly can run concentrically without loading or
+binding the outer bearing.
 
 ## Main Risks
 
